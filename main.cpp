@@ -17,29 +17,23 @@ int main()
 	cout << endl;
 	fin >> n; //citirea numarului de stari
 	cout << "n=" << n;
-
 	int i, j, flag = 0, k = 0, nr = 0, contor = 0;
 	char c, x, y;
-
-
 	cout << endl;
 	cout<<"Care este starea initiala?"<<endl;
 	fin>>c;
 	cout<<"Cate drumuri sunt?"<<endl;
 	cout<<c<<endl;
-
 	cout << "Cate stari finale sunt?" << endl;
 	fin>>k;
 	vector<int> drum;
+
 	for(int i=0;i<k;i++)
     {
      fin>>nr;
-
      drum.push_back(nr);
     }
-
 	fin >> n; //citirea numarului de stari finale
-
 	vector <int> final; //vectorul in care se vor stoca starile finale
 
 	for (i = 0; i < n; i++)
@@ -48,12 +42,8 @@ int main()
 		fin >> x;
 		final.push_back(x); //adaugarea in vector a starilor finale
 		nr++;
-
 	}
-
 	cout << endl;
-
-
 	cout << "Cate perechi sunt" << endl;
 	fin >> n; //citirea numarului de limbaje
 
@@ -65,10 +55,8 @@ int main()
 	}; //unde voi stoca informatiile
 
 	contor = n; //copierea informatiilor referitoare la nr de stari finale
-
 	struct NFA v[101];
 	char t;
-
 
 	for (i = 0; i < n; i++)
 	{
@@ -79,7 +67,6 @@ int main()
         fin>>t;
         v[i].exf=t;
         cout<<v[i].exf<<endl;
-
 	}
 	for (i = 0; i < n; i++)
 	{
@@ -104,8 +91,6 @@ int main()
 	fin.close();
     string a[101][k+1];
     a[0][0]=c;
-   // a[0][2]="!!!";
-    //a[0][1]="mie";
 
 	struct DFA
 	{
@@ -121,14 +106,13 @@ int main()
     int ap[33]={0};
     for(int i=0;i<n;i++)
         if(v[i].exi==c)
-           {
-               int y=v[i].drum;
-               y++;
-               char q=v[i].exf;
-                a[0][y-'0']+=v[i].exf;
-              // cout<<v[i].drum<<endl;
-               //cout<<v[i].exf<<endl;
-            }
+          {
+              int y=v[i].drum;
+              y++;
+			  char q = v[i].exf;
+			  a[0][y - '0'] += v[i].exf;
+
+           }
     int dim=1;
     for(int i=0;i<k;i++)
         a[i+1][0]=a[0][i+1];
@@ -136,7 +120,6 @@ int main()
     for(int i=0;i<3;i++)
         for(j=0;j<k+1;j++)
             cout<<a[i][j]<<" ";
-           //cout<<v[i].drum<<" ";
 
     dim=k+1;
     nr=1;
@@ -146,8 +129,6 @@ int main()
         for(i=0;i<n;i++)
             for(k=0;k<a[j][0].size();k++)
             { c=a[j][0][k];
-
-
                 if(v[i].exi==c)
                 {
                     flag=0;
@@ -160,22 +141,13 @@ int main()
                     if(flag==0)
                         a[j][y-'0']+=q;
                 }
-
-
-
             }
             nr++;
-            //cout<<"dim="<<dim<<" dim+k="<<dim+k<<endl;
             for(int f=dim;f<dim+fg;f++)
                 for(int b=1;b<fg+1;b++)
             {
                 a[f][0]=a[j][b];}
-                //cout<<a[j][b]<<endl;}
             dim=dim+fg;
-
-           // for(int g=1;g<k+1;g++)
-               // a[dim+g][0]=a[j][g];
-           // dim=dim+k;
         }
         cout<<"@@@@"<<endl;
     for(int i=0;i<dim;i++)
@@ -183,8 +155,6 @@ int main()
         for(int j=0;j<3;j++)
             cout<<a[i][j]<<" ";
         cout<<endl;}
-
-
 
 return 0;
 }
